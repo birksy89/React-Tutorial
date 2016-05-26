@@ -39,10 +39,12 @@ var CommentBox = React.createClass({
 
             < h1 > Players < /h1>
 
+            < SortingDropdown / >
+
             < CommentList data = {
                 this.state.data
             }
-            />
+            sorting = "name" / >
 
 
             < /div>
@@ -55,10 +57,11 @@ var CommentList = React.createClass({
     render: function() {
 
         if (this.props.data.players) {
+            //If the data exists, store it
+            var players = this.props.data.players;
 
-          var players = this.props.data.players;
-
-  var orderedPlayers = _.sortBy(players, function(o) { return o.name; });
+            var sortBy = this.props.sorting;
+            var orderedPlayers = _.sortBy(players, [sortBy]);
 
             var commentNodes = orderedPlayers.map(function(comment) {
                 return (
@@ -79,10 +82,10 @@ var CommentList = React.createClass({
 
         return ( < div className = "row" >
             < h2 > Hello, world!I am a CommentList < /h2> {
-                commentNodes
-            } < /div>
-        );
-    }
+            commentNodes
+        } < /div>
+    );
+}
 });
 
 
@@ -94,11 +97,41 @@ var Comment = React.createClass({
             < h2 className = "commentAuthor" > {
                 this.props.author
             } < /h2> {
-                this.props.children
-            } < /div>
-        );
-    }
+            this.props.children
+        } < /div>
+    );
+}
 });
+
+
+
+//Andrews Dropdown Attempt
+var SortingDropdown = React.createClass({
+    getInitialState:function(){
+      return {selectValue:'Radish'};
+  },
+    handleChange:function(e){
+    this.setState({selectValue:e.target.value});
+  },
+  render: function() {
+    var message='You selected '+this.state.selectValue;
+    return (
+      <div>
+      <select
+        value={this.state.selectValue}
+        onChange={this.handleChange}
+      >
+       <option value="Orange">Orange</option>
+        <option value="Radish">Radish</option>
+        <option value="Cherry">Cherry</option>
+      </select>
+      <p>{message}</p>
+      </div>
+    );
+  }
+});
+
+
 
 ReactDOM.render(
 
