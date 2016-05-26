@@ -1,16 +1,3 @@
-//Some Local Data within the file
-var localData = [
-  {
-    id: 1,
-    author: "Pete Hunt",
-    text: "This is one comment"
-  }, {
-    id: 2,
-    author: "Jordan Walke",
-    text: "This is *another* comment"
-  }
-];
-
 //The CommentBox
 var CommentBox = React.createClass({
 
@@ -44,13 +31,13 @@ var CommentBox = React.createClass({
 
   render: function() {
     return (
-      <div className="commentBox">
+      <div className="container">
         Hello, world! I am a CommentBox.
 
-        <h1>Comments</h1>
-        //<CommentList data={this.props.data}/>
+        <h1>Players</h1>
+
         <CommentList data={this.state.data}/>
-        <CommentForm/>
+
 
       </div>
     );
@@ -72,29 +59,23 @@ var CommentList = React.createClass({
     }
 
     return (
-      <div className="commentList">
-        Hello, world! I am a CommentList. {commentNodes}
+      <div className="row">
+        <h2>Hello, world! I am a CommentList</h2>
+        {/*{this.props.data.toString()}
+        These "..." are needed*/}
+        ...{commentNodes}
       </div>
     );
   }
 });
 
-//The CommentForm
-var CommentForm = React.createClass({
-  render: function() {
-    return (
-      <div className="commentForm">
-        Hello, world! I am a CommentForm.
-      </div>
-    );
-  }
-});
+
 
 //The Actual Comments
 var Comment = React.createClass({
   render: function() {
     return (
-      <div className="comment">
+      <div className="col-sm-3">
         <h2 className="commentAuthor">
           {this.props.author}
         </h2>
@@ -106,4 +87,4 @@ var Comment = React.createClass({
 
 ReactDOM.render(
 
-  <CommentBox url="http://api.football-data.org/v1/teams/66/players" pollInterval={2000}/>, document.getElementById('content'));
+  <CommentBox url="http://api.football-data.org/v1/teams/66/players" pollInterval={20000}/>, document.getElementById('content'));
