@@ -11,7 +11,7 @@ var CommentBox = React.createClass({
       cache: false,
       success: function(data) {
         console.log(data);
-        this.setState({data: data.players});
+        this.setState({data: data});
           console.log(this.state.data);
       }.bind(this),
       error: function(xhr, status, err) {
@@ -48,11 +48,13 @@ var CommentBox = React.createClass({
 var CommentList = React.createClass({
   render: function() {
 
-    if (this.props.data) {
-      var commentNodes = this.props.data.map(function(comment) {
+    if (this.props.data.players) {
+      var commentNodes = this.props.data.players.map(function(comment) {
         return (
+
           <Comment author={comment.name} key={comment.jerseyNumber}>
             {comment.position}
+
           </Comment>
         );
       });
@@ -61,9 +63,7 @@ var CommentList = React.createClass({
     return (
       <div className="row">
         <h2>Hello, world! I am a CommentList</h2>
-        {/*{this.props.data.toString()}
-        These "..." are needed*/}
-        ...{commentNodes}
+         {commentNodes}
       </div>
     );
   }
