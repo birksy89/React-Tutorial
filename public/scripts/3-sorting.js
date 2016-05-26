@@ -107,36 +107,42 @@ var Comment = React.createClass({
 
 //Andrews Dropdown Attempt
 var SortingDropdown = React.createClass({
-    getInitialState:function(){
-      return {selectValue:'Radish'};
-  },
-    handleChange:function(e){
-    this.setState({selectValue:e.target.value});
-  },
-  render: function() {
-    var message='You selected '+this.state.selectValue;
-    return (
-      <div>
-      <select
-        value={this.state.selectValue}
-        onChange={this.handleChange}
-      >
-       <option value="Orange">Orange</option>
-        <option value="Radish">Radish</option>
-        <option value="Cherry">Cherry</option>
-      </select>
-      <p>{message}</p>
-      </div>
-    );
-  }
+    getInitialState: function() {
+        return {
+            selectValue: 'Radish'
+        };
+    },
+    handleChange: function(e) {
+        this.setState({
+            selectValue: e.target.value
+        });
+    },
+    render: function() {
+        var message = 'You selected ' + this.state.selectValue;
+        return ( < div >
+            < select value = {
+                this.state.selectValue
+            }
+            onChange = {
+                this.handleChange
+            } >
+            < option value = "Orange" > Orange < /option> < option value = "Radish" > Radish < /option> < option value = "Cherry" > Cherry < /option> < /select> < p > {
+                message
+            } < /p> < /div>
+        );
+    }
 });
 
 
 
 ReactDOM.render(
 
+
+
+        < div >
+
         < CommentBox url = "http://api.football-data.org/v1/teams/66/players"
         pollInterval = {
             20000
         }
-        />, document.getElementById('content'));
+        /> < /div>, document.getElementById('content'));
